@@ -80,6 +80,7 @@ def sortnumber2():
 	numbers = value.split(",")
 	Isuck = True
 	Isucktoo = False
+	Ikindofsuck2 = True
 
     # 3. Remove all trailing whitespaces and convert them to numbers
 	numbers = [float(num.strip()) for num in numbers]
