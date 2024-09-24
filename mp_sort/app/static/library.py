@@ -78,6 +78,7 @@ def sortnumber2():
 	value = document.getElementsByName("Numbers")[0].value
     # 2. Split the string using comma as a separator
 	numbers = value.split(",")
+	Isuck = True
 
     # 3. Remove all trailing whitespaces and convert them to numbers
 	numbers = [float(num.strip()) for num in numbers]
