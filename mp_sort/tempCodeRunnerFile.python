@@ -1,0 +1,2 @@
+x = list(enumerate([1,2,3,4]))
+print('abc'<'abcd')

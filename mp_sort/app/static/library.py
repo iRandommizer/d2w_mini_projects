@@ -1,31 +1,56 @@
 from org.transcrypt.stubs.browser import *
 import random
 
-def gen_random_int(number, seed):
-	pass
+def gen_random_int(number:int, seed:int) ->list[int]:
+	random.seed(seed)
+	myarray = []
+	for k in range(number):
+		myarray.append(k)
+	random.shuffle(myarray)
+	return myarray		
 
 def generate():
+	console.log("button works!")
 	number = 10
 	seed = 200
 
-	# call gen_random_int() with the given number and seed
-	# store it to the variable array
-	pass
+	array = []
+	array_str = ""
 
-	array = None
-	# convert the items into one single string 
-	# the number should be separated by a comma
-	# and a full stop should end the string.
-	pass
-
-	array_str = None
-
-	# This line is to placed the string into the HTML
-	# under div section with the id called "generate"	
+	array = gen_random_int(number, seed)
+	
+	for i in array:	
+		if array.index(i) == 0:
+			array_str = array_str + str(i)
+		else:
+			array_str = array_str + "," + str(i)
+	array_str = array_str + "."
 	document.getElementById("generate").innerHTML = array_str
 
-
 def sortnumber1():
+	initial_array = document.getElementById("generate").innerHTML
+	int_array = []
+	array_str = ""
+	for i in range(20):
+		if i%2 == 0:
+			int_array.append(int(initial_array[i]))
+	n = len(int_array)
+	swapped = True
+	while swapped == True:
+		swapped = False
+		for small_index in range(1,n):
+			if int_array[small_index-1] > int_array[small_index]:
+				int_array[small_index-1], int_array[small_index] = int_array[small_index],int_array[small_index-1]
+				new_n = small_index
+				swapped = True
+		n = new_n
+	for i in int_array:	
+		if int_array.index(i) == 0:
+			array_str = array_str + str(i)
+		else:
+			array_str = array_str + "," + str(i)
+	array_str = array_str + "."
+	
 	'''	This function is used in Exercise 1.
 		The function is called when the sort button is clicked.
 
@@ -35,10 +60,6 @@ def sortnumber1():
 		- call your sort function, either bubble sort or insertion sort
 		- create a string of the sorted numbers and store it in array_str
 	'''
-	pass
-
-	array_str = None
-	
 	document.getElementById("sorted").innerHTML = array_str
 
 def sortnumber2():
@@ -53,19 +74,33 @@ def sortnumber2():
 		- create a string of the sorted numbers and store it in array_str
 	'''
 	# The following line get the value of the text input called "numbers"
-	value = document.getElementsByName("numbers")[0].value
+	#1. Get the string from the text input stored in the variable value
+	value = document.getElementsByName("Numbers")[0].value
+    # 2. Split the string using comma as a separator
+	numbers = value.split(",")
 
-	# Throw alert and stop if nothing in the text input
-	if value == "":
-		window.alert("Your textbox is empty")
-		return
+    # 3. Remove all trailing whitespaces and convert them to numbers
+	numbers = [float(num.strip()) for num in numbers]
 
-	# Your code should start from here
-	# store the final string to the variable array_str
-	pass
+    # 4. Sort the list of numbers
+	n = len(numbers)
+	swapped: bool = True
+	while swapped:
+		swapped = False
+		for idx in range(1,n):
+			if numbers[idx - 1] > numbers[idx]:
+				numbers[idx - 1], numbers[idx] = numbers[idx], numbers[idx - 1]
+				swapped = True
 
-	array_str = None
+    # 5. Create a single string containing the sorted numbers and store it to array_str
+	array_str = ", ".join(map(str, numbers))
+
+    # Show the sorting process
+	print("Sorting process: " + array_str)
 
 	document.getElementById("sorted").innerHTML = array_str
+
+
+    
 
 
