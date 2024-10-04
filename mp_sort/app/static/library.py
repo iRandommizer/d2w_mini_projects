@@ -40,6 +40,7 @@ def sortnumber1():
 
 
 	for i in range(20):
+		int_array.append(int(initial_array[i]))		
 		if i%2 == 0:
 			int_array.append(int(initial_array[i]))
 
@@ -83,14 +84,15 @@ def sortnumber2():
 		numbers = [float(num.strip()) for num in numbers]
 
 		# 4. Sort the list of numbers
-		n = len(array)
+		n = len(numbers)
 		for outer_index in range(1,n):
 			inner_index = outer_index
-			temp = array[inner_index] # This is so that it doesn't have keep swapping until it finally reaches it's right order in the array 
-			while inner_index > 0 and temp < array[inner_index - 1]:        
-				array[inner_index] = array[inner_index - 1]
+			temp = numbers[inner_index] # This is so that it doesn't have keep swapping until it finally reaches it's right order in the numbers 
+			while inner_index > 0 and temp < numbers[inner_index - 1]:        
+				numbers[inner_index] = numbers[inner_index - 1]
 				inner_index -= 1
-			array[inner_index] = temp
+
+			numbers[inner_index] = temp
 
 		# 5. Create a single string containing the sorted numbers and store it to array_str
 		# map runs the str() function for every iteration of numbers, hence 1 -> "1"
