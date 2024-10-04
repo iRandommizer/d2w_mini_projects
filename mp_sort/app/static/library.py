@@ -63,46 +63,42 @@ def sortnumber1():
 	document.getElementById("sorted").innerHTML = array_str
 
 def sortnumber2():
-	'''	This function is used in Exercise 2.
-		The function is called when the sort button is clicked.
-
-		You need to do the following:
-		- Get the numbers from a string variable "value".
-		- Split the string using comma as the separator and convert them to 
-			a list of numbers
-		- call your sort function, either bubble sort or insertion sort
-		- create a string of the sorted numbers and store it in array_str
-	'''
 	# The following line get the value of the text input called "numbers"
 	#1. Get the string from the text input stored in the variable value
 	value = document.getElementsByName("Numbers")[0].value
-    # 2. Split the string using comma as a separator
-	numbers = value.split(",")
-	Isuck = True
-	Isucktoo = False
+	array_str = ""
+	#1.a Consider if no value is given
+	if  value == "":
+		array_str = "naughty, naughty, better write some numbers in the textbox"
+	else:
+		# 2. Split the string using comma as a separator
+		numbers = value.split(",")
 
-    # 3. Remove all trailing whitespaces and convert them to numbers
-	numbers = [float(num.strip()) for num in numbers]
+		# 3. Remove all trailing whitespaces and convert them to an array of numbers
+		# Example: numbers = ["1 , 2,  3,   4, 5,  6  ,7"], with .strip(), 
+		# it becomes ["1,2,3,4,5,6,7"]
+		# It's just in a for loop so that .strip runs through every element in numbers
+		numbers = [float(num.strip()) for num in numbers]
 
-    # 4. Sort the list of numbers
-	n = len(numbers)
-	swapped: bool = True
-	while swapped:
-		swapped = False
-		for idx in range(1,n):
-			if numbers[idx - 1] > numbers[idx]:
-				numbers[idx - 1], numbers[idx] = numbers[idx], numbers[idx - 1]
-				swapped = True
+		# 4. Sort the list of numbers
+		n = len(numbers)
+		swapped: bool = True
+		while swapped:
+			swapped = False
+			new_n = 0 # Keeps track of how far it swapped last
+			for inner_idx in range(1,n):
+				if numbers[inner_idx - 1] > numbers[inner_idx]:
+					numbers[inner_idx - 1], numbers[inner_idx] = numbers[inner_idx], numbers[inner_idx - 1]
+					swapped = True
+					new_n = inner_idx #records last swap
+			n = new_n # Sets the new iteration limit
 
-    # 5. Create a single string containing the sorted numbers and store it to array_str
-	array_str = ", ".join(map(str, numbers))
+		# 5. Create a single string containing the sorted numbers and store it to array_str
+		array_str = ", ".join(map(str, numbers))
 
     # Show the sorting process
 	print("Sorting process: " + array_str)
 
 	document.getElementById("sorted").innerHTML = array_str
-
-
-    
 
 
